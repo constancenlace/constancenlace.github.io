@@ -97,8 +97,6 @@
   z-index: 10;
 }
 
-
-
     #bingo-container {
       width: 100%;
       max-width: 1070px;
@@ -166,7 +164,7 @@
       top: 28px;
       right: 0;
       background: #fff;
-      color: #333;
+      color: #262626;
       padding: 8px 10px;
       border-radius: 6px;
       font-size: 0.8em;
@@ -319,6 +317,22 @@
 
     a:hover {
       color: #8D6CAE;
+    }
+
+    @media (max-width: 600px) {
+  .bingo-cell {
+    font-size: 0.7rem;
+  }
+
+  .bingo-cell > .front, .bingo-cell > .back {
+    font-size: 0.7rem;
+    padding: 12px;
+  }
+
+  .bingo-cell .info-popup {
+    width: 220px;
+    font-size: 0.7em;
+  }
     }
   </style>
 </head>
