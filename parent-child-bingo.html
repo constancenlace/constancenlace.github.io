@@ -26,6 +26,12 @@
       background: linear-gradient(to bottom, #734f98 0%, white 50%);
     }
 
+    .main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 40px);
+}
+
     h1 {
       font-weight: 700;
       font-size: clamp(2rem, 5vw, 3em);
@@ -408,6 +414,7 @@
   </style>
 </head>
 <body>
+<div class="main container">
   <h1>Parent-Child Online Safety Bingo</h1>
   <p>Play and learn together with our Online Safety Bingo suitable for parents and preschoolers aged 5–6!</p>
   <h4>Objectives:</h4>
@@ -543,6 +550,8 @@
         <button id="popupFullCloseBtn">Close</button>
       </div>
     </div>
+  </div>
+
   </div>
 
 <script>
