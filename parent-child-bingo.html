@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-
   <style>
     html, body {
       box-sizing: border-box;
@@ -22,8 +21,8 @@
     body {
       font-family: "Montserrat", sans-serif;
       font-weight: 400;
-    padding-left: 5.2vw;
-  padding-right: 5.2vw;
+      padding-left: 5.2vw;
+      padding-right: 5.2vw;
       background: linear-gradient(to bottom, #734f98 0%, white 50%);
     }
 
@@ -52,73 +51,98 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      min-height: auto; /* fixed vertical spacing */
       width: 100%;
-      padding: 20px 0;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      flex-direction: column;
     }
 
- #tablet-outer-frame {
+   #tablet-outer-frame {
   width: 100%;
   max-width: 1400px;
-  aspect-ratio: 14 / 7;
   background: #210E33;
   border-radius: 40px;
-  padding: clamp(20px, 5vw, 55px);
+  padding: clamp(20px, 5vw, 55px); /* Equal padding on all sides */
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: visible; 
+  overflow: visible;
 }
 
-#tablet-outer-frame::before {
-  content: "";
-  position: absolute;
-  top: clamp(8px, 1vw, 14px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(40px, 10vw, 100px); 
-  height: clamp(3px, 0.8vw, 6px);  
-  background: #52247f;
-  border-radius: 10px;
-  z-index: 10;
-}
 
-#tablet-outer-frame::after {
-  content: "";
-  position: absolute;
-  bottom: clamp(10px, 1.2vw, 18px);
-  left: 50%;
-  transform: translateX(-50%);
-  width: clamp(30px, 6vw, 70px);  
-  height: clamp(6px, 1vw, 12px);
-  background: #52247f;
-  border-radius: 12px; 
-  z-index: 10;
-}
+    #tablet-outer-frame::before,
+    #tablet-outer-frame::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #52247f;
+      border-radius: 10px;
+      z-index: 10;
+    }
+
+    #tablet-outer-frame::before {
+      top: clamp(8px, 1vw, 14px);
+      width: clamp(40px, 10vw, 100px);
+      height: clamp(3px, 0.8vw, 6px);
+    }
+
+    #tablet-outer-frame::after {
+      bottom: clamp(10px, 1.2vw, 18px);
+      width: clamp(30px, 6vw, 70px);
+      height: clamp(6px, 1vw, 12px);
+      border-radius: 12px;
+    }
+
+    #game-content {
+      width: 100%;
+      max-width: 1070px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      box-sizing: border-box;
+      background: #F2EBF9;
+      border-radius: 20px;
+      padding: clamp(8px, 3vw, 24px);
+    }
 
     #bingo-container {
       width: 100%;
       max-width: 1070px;
-      aspect-ratio: 16 / 9;
       background: #F2EBF9;
       border-radius: 20px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: clamp(12px, 4vw, 32px);
+      padding: clamp(8px, 3vw, 24px);
       position: relative;
+      flex-grow: 1;
+      box-sizing: border-box;
+    }
+
+    #bingo-inner {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .bingo-board {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(3, 1fr);
-      gap: clamp(5px, 2vw, 5px);
-      width: 90vw;
+      gap: clamp(2px, 2vw, 2px);
+      width: 100%;
       max-width: 600px;
       aspect-ratio: 1 / 1;
-      perspective: 1000px;
+      box-sizing: border-box;
     }
 
     .bingo-cell {
@@ -143,41 +167,6 @@
     .bingo-cell:nth-child(odd):not(.flipped):hover { background: #c87f10; }
     .bingo-cell:nth-child(even):not(.flipped):hover { background: #b21652; }
 
-    .bingo-cell .info-icon {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: clamp(16px, 3vw, 20px);
-      height: clamp(16px, 3vw, 20px);
-      cursor: pointer;
-      z-index: 3;
-    }
-
-    .bingo-cell .info-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .bingo-cell .info-popup {
-      position: absolute;
-      top: 28px;
-      right: 0;
-      background: #fff;
-      color: #262626;
-      padding: 8px 10px;
-      border-radius: 6px;
-      font-size: 0.8em;
-      font-weight: 400;
-      text-align: left;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      display: none;
-      width: 300px;
-      z-index: 5;
-    }
-
-    .bingo-cell .info-icon:hover + .info-popup { display: block; }
-
     .bingo-cell.flipped { transform: rotateY(180deg); cursor: default; }
 
     .bingo-cell > .front, .bingo-cell > .back {
@@ -195,9 +184,9 @@
       box-sizing: border-box;
     }
 
-    .bingo-cell > .front { background: inherit; z-index: 2; transform: rotateY(0deg); }
+    .bingo-cell > .front { background: inherit; z-index: 2; }
     .bingo-cell > .back {
-      background-image: url('puzzle.jpeg');
+      background-image: url('puzzle.jpg');
       background-repeat: no-repeat;
       background-size: 300% 300%;
       transform: rotateY(180deg);
@@ -214,68 +203,120 @@
     .bingo-cell:nth-child(8) > .back { background-position: 50% 100%; }
     .bingo-cell:nth-child(9) > .back { background-position: 100% 100%; }
 
-    .popup {
+    .info-icon {
       position: absolute;
+      top: 10px;
+      right: 10px;
+      width: clamp(16px, 3vw, 20px);
+      height: clamp(16px, 3vw, 20px);
+      cursor: pointer;
+      z-index: 3;
+    }
+
+    .info-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .info-popup {
+      position: absolute;
+      top: 28px;
+      right: 0;
+      background: #fff;
+      color: #262626;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 0.8em;
+      font-weight: 400;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      display: none;
+      width: 300px;
+      z-index: 5;
+    }
+
+    .info-icon:hover + .info-popup { display: block; }
+
+    /* Popups */
+
+    .popup {
+      position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.8);
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 10;
+      z-index: 9999;
       border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .popup.show {
+      display: flex;
     }
 
     .popupLine-content, .popupFull-content {
       background: white;
-      padding: clamp(20px, 5vw, 36px);
+      color: #262626 !important;
+      padding: clamp(16px, 4vw, 36px);
       border-radius: 10px;
       text-align: center;
       max-width: 80%;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: clamp(12px, 2vw, 24px);
       box-sizing: border-box;
     }
 
-    .popupFull-content {
-      position: relative;
-    }
+.popupFull-content {
+  position: relative;
+  background: white;
+  color: #262626 !important;
+  padding: clamp(24px, 5vw, 40px);
+  border-radius: 10px;
+  text-align: center;
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 2vw, 24px);
+  box-sizing: border-box;
+}
 
-    .close-popup-full {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 30px;
-      height: 30px;
-      background-color: #52247f;
-      color: white;
-      border-radius: 50%;
-      font-size: 24px;
-      font-weight: 400;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease;
-      z-index: 100;
-    }
+.close-popup-full {
+  position: absolute;
+  top: clamp(16px, 2vw, 24px);
+  right: clamp(16px, 2vw, 24px);
+  width: clamp(24px, 5vw, 36px);
+  height: clamp(24px, 5vw, 36px);
+  background-color: #52247f;
+  color: white;
+  border-radius: 50%;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
 
     .close-popup-full:hover { background-color: #8d6cae; }
 
     .popup-buttons {
       display: flex;
-      gap: 16px;
+      gap: clamp(10px, 3vw, 20px);
       justify-content: center;
-      padding: 0 8px;
+      padding: 0 clamp(6px, 2vw, 16px);
       flex-wrap: wrap;
+      margin-top: clamp(-20px, -3vw, 0px);
+
     }
 
     .popup-buttons button {
       flex: 1;
-      min-width: 120px;
-      padding: 14px 22px;
-      cursor: pointer;
+      min-width: clamp(100px, 30vw, 180px);
+      padding: clamp(10px, 2vw, 15px) clamp(16px, 4vw, 28px);
       font-family: "Montserrat", sans-serif;
       font-weight: 400;
       color: white;
@@ -285,29 +326,50 @@
       transition: background-color 0.3s ease;
     }
 
-    .popup-buttons button:hover { background-color: #8d6cae; }
+    .popup-buttons button:hover:not(:disabled) { background-color: #8d6cae; }
 
-    #popupLineMessage, #popupFullMessage {
-      color: #262626;
-      font-weight: 400;
-      font-size: 1em;
-      margin: 0;
-      padding: 0 8px;
+    #bingo-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      padding: 0;
+      box-sizing: border-box;
+      gap: clamp(8px, 2vw, 16px);
     }
 
-    .freeze {
-      pointer-events: none;
+    #resetButton {
+      padding: clamp(10px, 2vw, 15px) clamp(20px, 6vw, 40px);
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      font-size: 1em;
+      background-color: #52247f;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
       user-select: none;
+      align-self: center;
+      max-width: 100%;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+
+    #resetButton:hover {
+      background-color: #351357;
+    }
+
+    #resetButton:disabled {
+      background-color: #c8aefc;
+      cursor: not-allowed;
     }
 
     #link {
-      text-align: left;
-      color: #262626;
-      font-weight: 400;
-      max-width: 1000px;
-      width: 100%;
-      margin-top: 25px;
-      margin-bottom: 50px;
+      padding-top: 20px;
     }
 
     a {
@@ -320,42 +382,40 @@
     }
 
     @media (max-width: 600px) {
-  .bingo-cell {
-    font-size: 0.7rem;
-  }
+      .bingo-cell {
+        font-size: 0.7rem;
+      }
 
-  .bingo-cell > .front, .bingo-cell > .back {
-    font-size: 0.7rem;
-    padding: 12px;
-  }
+      .bingo-cell > .front,
+      .bingo-cell > .back {
+        font-size: 0.7rem;
+        padding: 12px;
+      }
 
-  .bingo-cell .info-popup {
-    width: 220px;
-    font-size: 0.7em;
-  }
+      .popupLine-content,
+      .popupFull-content {
+        max-width: 95%;
+        padding: 16px;
+      }
+
+      .info-popup {
+        width: 220px;
+        font-size: 0.7em;
+      }
     }
+
+    
   </style>
 </head>
-
 <body>
   <h1>Parent-Child Online Safety Bingo</h1>
-  <p>
-    Play and learn together with our Online Safety Bingo suitable for
-    parents and preschoolers aged 5–6!
-  </p>
+  <p>Play and learn together with our Online Safety Bingo suitable for parents and preschoolers aged 5–6!</p>
   <h4>Objectives:</h4>
   <p>1. To encourage discussions about online safety between parents and young children.</p>
   <p>2. To guide parents and young children in adopting healthy digital habits.</p>
   <h4>Instructions:</h4>
-  <p>
-    1. If you/your child have done the action listed in a square before,
-    check it off the board. Feel free to complete the action as you are doing
-    this Bingo activity. Hover over the information icons for tips.
-  </p>
-  <p>
-    2. Check as many squares off as possible until you have cleared a row,
-    column, or even the whole board. A surprise awaits at the end! Diagonals are allowed.
-  </p>
+  <p>1. If you/your child has done the action listed in a square before, check it off the board. Hover over the info icons for tips.</p>
+  <p>2. Check as many squares off as possible until you have cleared a row, column, or even the whole board. Diagonals are allowed.</p>
   <div id="legend">
     <img src="pink.png" width="20px" alt="Parent color" />
     <p>- Parent</p>
@@ -365,246 +425,213 @@
 
   <div id="game-wrapper">
     <div id="tablet-outer-frame">
-      <div id="bingo-container">
-        <div class="bingo-board" id="bingoBoard">
+      <div id="game-content">
+        <div id="bingo-inner">
+          <div class="bingo-board" id="bingoBoard">
 
-          <div class="bingo-cell">
-            <div class="front">Played with a tablet.</div>
-            <div class="back"></div>
-          </div>
-
-          <div class="bingo-cell">
-            <div class="front">
-              <div class="info-icon">
-                <img src="info-icon.png" />
-              </div>
-              <div class="info-popup">
-                According to MOH screen use guidelines, screen time for children
-                between 18 months and 6 years old should be limited to 1 hour a day
-                to ensure they have sufficient time for other activities crucial for
-                development.
-              </div>
-              Limited my child's screen time usage.
+            <div class="bingo-cell">
+              <div class="front">Played with a tablet.</div>
+              <div class="back"></div>
             </div>
-            <div class="back"></div>
-          </div>
 
-          <div class="bingo-cell">
-            <div class="front">Played online games with friends.</div>
-            <div class="back"></div>
-          </div>
-
-          <div class="bingo-cell">
-            <div class="front">
-              <div class="info-icon">
-                <img src="info-icon.png" />
+            <div class="bingo-cell">
+              <div class="front">
+                <div class="info-icon">
+                  <img src="info-icon.png" alt="Info" />
+                </div>
+                <div class="info-popup">
+                  According to MOH screen use guidelines, screen time for children
+                  between 18 months and 6 years old should be limited to 1 hour a day
+                  to ensure they have sufficient time for other activities crucial for
+                  development.
+                </div>
+                Limited my child's screen time usage.
               </div>
-              <div class="info-popup">
-                Fostering a safe online environment is necessary as young children
-                should be exposed to material that supports their learning,
-                development and emotional well-being.
-              </div>
-              Curated age-appropriate content for my child.
+              <div class="back"></div>
             </div>
-            <div class="back"></div>
-          </div>
 
-          <div class="bingo-cell">
-            <div class="front">Sticked to my screen time rules.</div>
-            <div class="back"></div>
-          </div>
+            <div class="bingo-cell">
+              <div class="front">Played online games with friends.</div>
+              <div class="back"></div>
+            </div>
 
-          <div class="bingo-cell">
-            <div class="front">
-              <div class="info-icon">
-                <img src="info-icon.png" />
+            <div class="bingo-cell">
+              <div class="front">
+                <div class="info-icon">
+                  <img src="info-icon.png" alt="Info" />
+                </div>
+                <div class="info-popup">
+                  Fostering a safe online environment is necessary as young children
+                  should be exposed to material that supports their learning,
+                  development and emotional well-being.
+                </div>
+                Curated age-appropriate content for my child.
               </div>
-              <div class="info-popup">
-                Teaching young children to navigate the online world is important
+              <div class="back"></div>
+            </div>
+
+            <div class="bingo-cell">
+              <div class="front">Sticked to my screen time rules.</div>
+              <div class="back"></div>
+            </div>
+
+            <div class="bingo-cell">
+              <div class="front">
+                <div class="info-icon">
+                  <img src="info-icon.png" alt="Info" />
+                </div>
+                <div class="info-popup">
+                  Teaching young children to navigate the online world is important
                 for them to develop good habits early, avoid harmful content and
                 know when to seek help from a trusted adult.
+                </div>
+                Talked to my child about online safety.
               </div>
-              Talked to my child about online safety.
+              <div class="back"></div>
             </div>
-            <div class="back"></div>
-          </div>
 
-          <div class="bingo-cell">
-            <div class="front">Asked my parents before using my device.</div>
-            <div class="back"></div>
-          </div>
-
-          <div class="bingo-cell">
-            <div class="front">
-              <div class="info-icon">
-                <img src="info-icon.png" />
-              </div>
-              <div class="info-popup">
-                Young children are more likely to develop healthy online habits
-                (such as keeping devices away during mealtimes) when parents lead
-                by example.
-              </div>
-              Set a family screen time use agreement.
+            <div class="bingo-cell">
+              <div class="front">Asked my parents before using my device.</div>
+              <div class="back"></div>
             </div>
-            <div class="back"></div>
+
+            <div class="bingo-cell">
+              <div class="front">
+                <div class="info-icon">
+                  <img src="info-icon.png" alt="Info" />
+                </div>
+                <div class="info-popup">
+                  Young children are more likely to develop healthy online habits such as keeping
+                  devices away during mealtimes, when parents lead by example.
+                </div>
+                Set a family screen use agreement.
+              </div>
+              <div class="back"></div>
+            </div>
+
+            <div class="bingo-cell">
+              <div class="front">Taken breaks when using my device</div>
+              <div class="back"></div>
+            </div>
+
           </div>
 
-          <div class="bingo-cell">
-            <div class="front">Taken breaks when using my device.</div>
-            <div class="back"></div>
-          </div>
+          <button id="resetButton" type="button">Reset</button>
 
-        </div>
-
-        <div class="popup popupLine" id="popupLine">
-          <div class="popup-content popupLine-content">
-            <p id="popupLineMessage">Congrats, you got a Bingo!</p>
-            <div id="popupLineButtons" class="popup-buttons"></div>
-          </div>
-        </div>
-
-        <div class="popup popupFull" id="popupFull">
-          <div class="popup-content popupFull-content">
-            <span class="close-popup close-popup-full" id="closePopupFull">&times;</span>
-            <p id="popupFullMessage">Congrats, you completed the whole board!</p>
-            <div id="popupFullButtons" class="popup-buttons"></div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div id="link">
+   <div id="link">
     To learn more about online safety for preschoolers, refer to
-    <a
-      href="https://www.moh.gov.sg/others/resources-and-statistics/guidance-on-screen-use"
-      target="_blank"
-      rel="noopener"
-      >Guidance on Screen Use in Children.</a>
+    <a href="https://www.moh.gov.sg/others/resources-and-statistics/guidance-on-screen-use" target="_blank">Guidance on Screen Use in Children</a>.
   </div>
 
-  <script>
+  <div class="popup popupLine" id="popupLine">
+    <div class="popup-content popupLine-content">
+      <p id="popupLineMessage" style="color: #262626;">Congrats, you got a Bingo!</p>
+      <div id="popupLineButtons" class="popup-buttons"></div>
+    </div>
+  </div>
+
+  <!-- Popup for Full Board Completion -->
+  <div class="popup popupFull" id="popupFull">
+    <div class="popup-content popupFull-content">
+      <p id="popupFullMessage" style="color: #262626;">Congrats, you completed the whole board!</p>
+      <div class="popup-buttons">
+        <button id="popupFullCloseBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+<script>
     const cells = document.querySelectorAll(".bingo-cell");
-    const boardSize = 3;
-    let clicked = Array(9).fill(false);
-    let bingoShown = new Set();
-    let hasFirstLineBingoOccurred = false;
-
-    const diag1Indices = [0, 4, 8];
-    const diag2Indices = [2, 4, 6];
-
     const popupLine = document.getElementById("popupLine");
     const popupFull = document.getElementById("popupFull");
-
-    const popupLineMessage = document.getElementById("popupLineMessage");
-    const popupFullMessage = document.getElementById("popupFullMessage");
-
+    const resetButton = document.getElementById("resetButton");
     const popupLineButtons = document.getElementById("popupLineButtons");
-    const popupFullButtons = document.getElementById("popupFullButtons");
+    const closePopupFullBtn = document.getElementById("popupFullCloseBtn");
 
-    const closePopupFull = document.getElementById("closePopupFull");
+    const lines = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [2, 4, 6]
+    ];
 
-    cells.forEach((cell, index) => {
-      cell.addEventListener("click", () => {
-        if (clicked[index]) return;
+    let hasShownLinePopup = false;
 
-        clicked[index] = true;
-        cell.classList.add("flipped");
-
-        checkForBingo(index);
-      });
-    });
-
-    function checkForBingo(index) {
-      const row = Math.floor(index / boardSize);
-      const col = index % boardSize;
-
-      const rowIndices = [...Array(boardSize).keys()].map(i => row * boardSize + i);
-      const colIndices = [...Array(boardSize).keys()].map(i => i * boardSize + col);
-
-      const rowComplete = rowIndices.every(i => clicked[i]);
-      const colComplete = colIndices.every(i => clicked[i]);
-      const diag1Complete = diag1Indices.every(i => clicked[i]);
-      const diag2Complete = diag2Indices.every(i => clicked[i]);
-      const fullBoardComplete = clicked.every(i => i);
-
-      if (fullBoardComplete && !bingoShown.has("full-board")) {
-        bingoShown.add("full-board");
-        setTimeout(() => {
-          showFullPopup("Congrats, you completed the whole board!", ["Reset Game"]);
-        });
-      } else if (
-        !hasFirstLineBingoOccurred &&
-        (
-          (rowComplete && !bingoShown.has(`row-${row}`)) ||
-          (colComplete && !bingoShown.has(`col-${col}`)) ||
-          (diag1Complete && !bingoShown.has("diag-1")) ||
-          (diag2Complete && !bingoShown.has("diag-2"))
-        )
-      ) {
-        hasFirstLineBingoOccurred = true;
-        [
-          [rowComplete, `row-${row}`],
-          [colComplete, `col-${col}`],
-          [diag1Complete, "diag-1"],
-          [diag2Complete, "diag-2"]
-        ].forEach(([complete, key]) => {
-          if (complete && !bingoShown.has(key)) {
-            bingoShown.add(key);
-            showLinePopup(
-              "Bingo! You cleared a line!",
-              ["Complete Full Board", "Reset Game"]
-            );
-          }
-        });
-      }
+    function checkLines() {
+      const flippedIndices = Array.from(cells)
+        .map((c, i) => c.classList.contains("flipped") ? i : -1)
+        .filter(i => i !== -1);
+      return lines.some(line => line.every(idx => flippedIndices.includes(idx)));
     }
 
-    function showLinePopup(message, buttons) {
-      popupLineMessage.textContent = message;
-      popupLineButtons.innerHTML = "";
-      buttons.forEach(text => {
-        const btn = document.createElement("button");
-        btn.textContent = text;
-        btn.addEventListener("click", () => {
-          if (text === "Reset Game") resetGame();
-          if (text === "Complete Full Board") popupLine.style.display = "none";
-        });
-        popupLineButtons.appendChild(btn);
-      });
+    function checkFullBoard() {
+      return Array.from(cells).every(c => c.classList.contains("flipped"));
+    }
+
+    function openPopupLine() {
+      if (hasShownLinePopup) return;
+      hasShownLinePopup = true;
+
       popupLine.style.display = "flex";
-    }
+      popupLineButtons.innerHTML = "";
 
-    function showFullPopup(message, buttons) {
-      popupFullMessage.textContent = message;
-      popupFullButtons.innerHTML = "";
-      buttons.forEach(text => {
-        const btn = document.createElement("button");
-        btn.textContent = text;
-        btn.addEventListener("click", () => {
-          if (text === "Reset Game") resetGame();
-        });
-        popupFullButtons.appendChild(btn);
+      const continueBtn = document.createElement("button");
+      continueBtn.textContent = "Continue Playing";
+      continueBtn.addEventListener("click", () => popupLine.style.display = "none");
+
+      const resetBtn = document.createElement("button");
+      resetBtn.textContent = "Reset Game";
+      resetBtn.addEventListener("click", () => {
+        resetGame();
+        popupLine.style.display = "none";
       });
-      popupFull.style.display = "flex";
+
+      popupLineButtons.appendChild(continueBtn);
+      popupLineButtons.appendChild(resetBtn);
+      resetButton.disabled = false;
     }
 
-    closePopupFull.addEventListener("click", () => {
+    function openPopupFull() {
+      popupFull.style.display = "flex";
+      resetButton.disabled = false;
+    }
+
+    function closePopupFullFunc() {
       popupFull.style.display = "none";
-    });
+    }
 
     function resetGame() {
-      clicked.fill(false);
-      bingoShown.clear();
-      hasFirstLineBingoOccurred = false;
-      cells.forEach(cell => {
-        cell.classList.remove("flipped");
-      });
+      cells.forEach(cell => cell.classList.remove("flipped"));
       popupLine.style.display = "none";
       popupFull.style.display = "none";
+      resetButton.disabled = true;
+      hasShownLinePopup = false;
     }
+
+    function updateResetButtonState() {
+      const anyFlipped = Array.from(cells).some(c => c.classList.contains("flipped"));
+      resetButton.disabled = !anyFlipped;
+    }
+
+    cells.forEach(cell => {
+      cell.addEventListener("click", () => {
+        if (cell.classList.contains("flipped")) return;
+        cell.classList.add("flipped");
+        updateResetButtonState();
+
+        if (checkLines()) openPopupLine();
+        if (checkFullBoard()) openPopupFull();
+      });
+    });
+
+    resetButton.addEventListener("click", resetGame);
+    closePopupFullBtn.addEventListener("click", closePopupFullFunc);
+
+    resetButton.disabled = true;
   </script>
 </body>
 </html>
-
-
