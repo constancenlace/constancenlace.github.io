@@ -59,20 +59,19 @@
     }
 
     #tablet-outer-frame {
-  width: 1200px; /* or 1400px, depending on your desired size */
+  width: 1200px; /* your "design size" */
   background: #210E33;
   border-radius: 40px;
-  padding-top: clamp(20px, 5vw, 55px);
-  padding-bottom: clamp(20px, 5vw, 55px);
-  padding-left: clamp(20px, 5vw, 55px);
-  padding-right: clamp(20px, 5vw, 55px);
+  padding: clamp(20px, 5vw, 55px);
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: visible;
+  transform-origin: top center;
 }
+
 
     #tablet-outer-frame::before,
     #tablet-outer-frame::after {
@@ -402,6 +401,21 @@ a:hover {
       }
     }
 
+    .scale-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@media (max-width: 1200px) {
+  .scale-wrapper {
+    transform: scale(calc(100vw / 1200));
+    transform-origin: top center;
+    height: calc(1000px * (100vw / 1200)); /* adjust 1000px based on your tablet height */
+  }
+}
+
     
   </style>
 </head>
@@ -422,6 +436,7 @@ a:hover {
   </div>
 
   <div id="game-wrapper">
+    <div class="scale-wrapper">
     <div id="tablet-outer-frame">
       <div id="game-content">
         <div id="bingo-inner">
@@ -519,6 +534,7 @@ a:hover {
         </div>
       </div>
     </div>
+  </div>
   </div>
 
    <div id="link">
