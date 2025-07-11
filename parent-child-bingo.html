@@ -26,12 +26,6 @@
       background: linear-gradient(to bottom, #734f98 0%, white 50%);
     }
 
-    .main-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 clamp(16px, 4vw, 40px);
-}
-
     h1 {
       font-weight: 700;
       font-size: clamp(2rem, 5vw, 3em);
@@ -64,20 +58,22 @@
       flex-direction: column;
     }
 
-   #tablet-outer-frame {
-  width: 100%;
-  max-width: 1400px;
-  background: #210E33;
-  border-radius: 40px;
-  padding: clamp(20px, 5vw, 55px); /* Equal padding on all sides */
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: visible;
-}
-
+    #tablet-outer-frame {
+      width: 100%;
+      max-width: 1400px;
+      background: #210E33;
+      border-radius: 40px;
+        padding-top: clamp(20px, 5vw, 55px);
+  padding-bottom: clamp(20px, 5vw, 55px);
+  padding-left: clamp(20px, 5vw, 55px);
+  padding-right: clamp(20px, 5vw, 55px);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: visible;
+    }
 
     #tablet-outer-frame::before,
     #tablet-outer-frame::after {
@@ -275,45 +271,28 @@
       box-sizing: border-box;
     }
 
-.popupFull-content {
-  position: relative;
-  background: white;
-  color: #262626 !important;
-  padding: clamp(24px, 5vw, 40px);
-  border-radius: 10px;
-  text-align: center;
-  max-width: 80%;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(12px, 2vw, 24px);
-  box-sizing: border-box;
-}
+    .popupFull-content {
+      position: relative;
+    }
 
-.close-popup-full {
-  position: absolute;
-  top: clamp(16px, 2vw, 24px);
-  right: clamp(16px, 2vw, 24px);
-  width: clamp(24px, 5vw, 36px);
-  height: clamp(24px, 5vw, 36px);
-  background-color: #52247f;
-  color: white;
-  border-radius: 50%;
-  font-size: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+    .close-popup-full {
+      position: absolute;
+      top: clamp(8px, 2vw, 14px);
+      right: clamp(8px, 2vw, 14px);
+      width: clamp(24px, 5vw, 36px);
+      height: clamp(24px, 5vw, 36px);
+      background-color: #52247f;
+      color: white;
+      border-radius: 50%;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
     .close-popup-full:hover { background-color: #8d6cae; }
-
-     body.popup-open {
-      position: fixed;
-      width: 100%;
-      overflow: hidden;
-      touch-action: none;
-    }
 
     .popup-buttons {
       display: flex;
@@ -321,9 +300,6 @@
       justify-content: center;
       padding: 0 clamp(6px, 2vw, 16px);
       flex-wrap: wrap;
-      margin-top: clamp(-20px, -3vw, 0px);
-      cursor: pointer;
-
     }
 
     .popup-buttons button {
@@ -337,6 +313,7 @@
       border: none;
       border-radius: 10px;
       transition: background-color 0.3s ease;
+      margin-top: -20px;
       cursor: pointer;
     }
 
@@ -382,8 +359,8 @@
       cursor: not-allowed;
     }
 
-    #link {
-      padding-top: 20px;
+    #link{
+    padding-top: 20px;
     }
 
     a {
@@ -394,6 +371,14 @@
     a:hover {
       color: #8D6CAE;
     }
+a {
+  color: #52247f;
+  font-weight: 700;
+}
+
+a:hover {
+  color: #8D6CAE;
+}
 
     @media (max-width: 600px) {
       .bingo-cell {
@@ -422,7 +407,6 @@
   </style>
 </head>
 <body>
-<div class="main container">
   <h1>Parent-Child Online Safety Bingo</h1>
   <p>Play and learn together with our Online Safety Bingo suitable for parents and preschoolers aged 5–6!</p>
   <h4>Objectives:</h4>
@@ -543,79 +527,72 @@
     <a href="https://www.moh.gov.sg/others/resources-and-statistics/guidance-on-screen-use" target="_blank">Guidance on Screen Use in Children</a>.
   </div>
 
-  <div class="popup popupLine" id="popupLine">
-    <div class="popup-content popupLine-content">
-      <p id="popupLineMessage" style="color: #262626;">Congrats, you got a Bingo!</p>
-      <div id="popupLineButtons" class="popup-buttons"></div>
-    </div>
-  </div>
-
-  <div class="popup popupFull" id="popupFull">
-    <div class="popup-content popupFull-content">
-      <p id="popupFullMessage" style="color: #262626;">Congrats, you completed the whole board!</p>
-      <div class="popup-buttons">
-        <button id="popupFullCloseBtn">Close</button>
+<div class="popup popupLine" id="popupLine">
+        <div class="popup-content popupLine-content">
+          <p id="popupLineMessage" style="color: #262626;">Congrats, you got a Bingo!</p>
+          <div id="popupLineButtons" class="popup-buttons"></div>
+        </div>
       </div>
+
+      <div class="popup popupFull" id="popupFull">
+  <div class="popup-content popupFull-content">
+    <p id="popupFullMessage" style="color: #262626;">Congrats, you completed the whole board!</p>
+    <div class="popup-buttons" style="justify-content: center; margin-top: 1rem;">
+      <button id="closePopupFull" type="button">Close</button>
     </div>
   </div>
-
-  </div>
+</div>
 
 <script>
-  const cells = document.querySelectorAll(".bingo-cell");
+    const cells = document.querySelectorAll(".bingo-cell");
     const popupLine = document.getElementById("popupLine");
     const popupFull = document.getElementById("popupFull");
     const resetButton = document.getElementById("resetButton");
     const popupLineButtons = document.getElementById("popupLineButtons");
-    const closePopupFullBtn = document.getElementById("popupFullCloseBtn");
+    const closePopupFull = document.getElementById("closePopupFull");
 
+    // Lines to check: rows, columns, diagonals
     const lines = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8],
-      [0, 3, 6], [1, 4, 7], [2, 5, 8],
-      [0, 4, 8], [2, 4, 6]
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
     ];
 
-    let hasShownLinePopup = false;
-
-    // To store scroll position for scroll lock
-    let scrollPosition = 0;
-
-    function lockScroll() {
-      scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-      document.body.style.top = `-${scrollPosition}px`;
-      document.body.classList.add("popup-open");
-    }
-
-    function unlockScroll() {
-      document.body.classList.remove("popup-open");
-      document.body.style.top = '';
-      window.scrollTo(0, scrollPosition);
-    }
+    let hasShownLinePopup = false; // flag so line popup shows only once
 
     function checkLines() {
       const flippedIndices = Array.from(cells)
-        .map((c, i) => c.classList.contains("flipped") ? i : -1)
-        .filter(i => i !== -1);
-      return lines.some(line => line.every(idx => flippedIndices.includes(idx)));
+        .map((c, i) => (c.classList.contains("flipped") ? i : -1))
+        .filter((i) => i !== -1);
+
+      for (let line of lines) {
+        if (line.every((idx) => flippedIndices.includes(idx))) {
+          return true;
+        }
+      }
+      return false;
     }
 
     function checkFullBoard() {
-      return Array.from(cells).every(c => c.classList.contains("flipped"));
+      return Array.from(cells).every((c) => c.classList.contains("flipped"));
     }
 
     function openPopupLine() {
-      if (hasShownLinePopup) return;
+      if (hasShownLinePopup) return; // only open once
       hasShownLinePopup = true;
 
       popupLine.style.display = "flex";
-      lockScroll();
       popupLineButtons.innerHTML = "";
 
       const continueBtn = document.createElement("button");
       continueBtn.textContent = "Continue Playing";
       continueBtn.addEventListener("click", () => {
         popupLine.style.display = "none";
-        unlockScroll();
       });
 
       const resetBtn = document.createElement("button");
@@ -623,53 +600,58 @@
       resetBtn.addEventListener("click", () => {
         resetGame();
         popupLine.style.display = "none";
-        unlockScroll();
       });
 
       popupLineButtons.appendChild(continueBtn);
       popupLineButtons.appendChild(resetBtn);
+
       resetButton.disabled = false;
     }
 
     function openPopupFull() {
       popupFull.style.display = "flex";
-      lockScroll();
       resetButton.disabled = false;
     }
 
     function closePopupFullFunc() {
       popupFull.style.display = "none";
-      unlockScroll();
     }
 
     function resetGame() {
-      cells.forEach(cell => cell.classList.remove("flipped"));
+      cells.forEach((cell) => cell.classList.remove("flipped"));
       popupLine.style.display = "none";
       popupFull.style.display = "none";
-      unlockScroll();
       resetButton.disabled = true;
       hasShownLinePopup = false;
     }
 
     function updateResetButtonState() {
-      const anyFlipped = Array.from(cells).some(c => c.classList.contains("flipped"));
+      // Enable reset if any cell flipped, else disable
+      const anyFlipped = Array.from(cells).some((c) =>
+        c.classList.contains("flipped")
+      );
       resetButton.disabled = !anyFlipped;
     }
 
-    cells.forEach(cell => {
+    cells.forEach((cell) => {
       cell.addEventListener("click", () => {
         if (cell.classList.contains("flipped")) return;
         cell.classList.add("flipped");
         updateResetButtonState();
 
-        if (checkLines()) openPopupLine();
-        if (checkFullBoard()) openPopupFull();
+        if (checkLines()) {
+          openPopupLine();
+        }
+        if (checkFullBoard()) {
+          openPopupFull();
+        }
       });
     });
 
     resetButton.addEventListener("click", resetGame);
-    closePopupFullBtn.addEventListener("click", closePopupFullFunc);
+    closePopupFull.addEventListener("click", closePopupFullFunc);
 
+    // Initially disable reset button
     resetButton.disabled = true;
   </script>
 </body>
