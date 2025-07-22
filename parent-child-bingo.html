@@ -232,7 +232,7 @@
       text-align: left;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
       display: none;
-      width: 300px;
+      width: 350px;
       z-index: 5;
     }
 
@@ -421,13 +421,10 @@ a:hover {
 </head>
 <body>
   <h1>Parent-Child Online Safety Bingo</h1>
-  <p>Play and learn together with our Online Safety Bingo suitable for parents and preschoolers aged 5–6!</p>
-  <h4>Objectives:</h4>
-  <p>1. To encourage discussions about online safety between parents and young children.</p>
-  <p>2. To guide parents and young children in adopting healthy digital habits.</p>
+  <p>Play a game of parent-child bingo together and check the actions you have taken to be safe online!</p>
   <h4>Instructions:</h4>
-  <p>1. If you/your child has done the action listed in a square before, check it off the board. Hover over the info icons for tips.</p>
-  <p>2. Check as many squares off as possible until you have cleared a row, column, or even the whole board. Diagonals are allowed.</p>
+  <p>1. Parents and kids, if you have completed the actions listed in the squares, check them off the bingo board. Hover over the info icons if you need help understanding the actions.</p>
+  <p>2. Check off as many squares as possible until you have cleared a row or column. Diagonals are not allowed!</p>
   <div id="legend">
     <img src="pink.png" width="20px" alt="Parent color" />
     <p>- Parent</p>
@@ -443,7 +440,7 @@ a:hover {
           <div class="bingo-board" id="bingoBoard">
 
             <div class="bingo-cell">
-              <div class="front">Played with a tablet.</div>
+              <div class="front">Played with a phone</div>
               <div class="back"></div>
             </div>
 
@@ -453,18 +450,17 @@ a:hover {
                   <img src="info-icon.png" alt="Info" />
                 </div>
                 <div class="info-popup">
-                  According to MOH screen use guidelines, screen time for children
-                  between 18 months and 6 years old should be limited to 1 hour a day
-                  to ensure they have sufficient time for other activities crucial for
-                  development.
+                  According to MOH Screen Use guidelines, children aged between 18 months and 6 years old should have less than 1 hour of screen use a day outside school. <br>
+                  <br>
+                  Children aged 7 to 12 years old should have less than 2 hours of screen use a day, unless related to school work.
                 </div>
-                Limited my child's screen time usage.
+                Limited my child's screen time usage
               </div>
               <div class="back"></div>
             </div>
 
             <div class="bingo-cell">
-              <div class="front">Played online games with friends.</div>
+              <div class="front">Played games with other people online</div>
               <div class="back"></div>
             </div>
 
@@ -474,17 +470,15 @@ a:hover {
                   <img src="info-icon.png" alt="Info" />
                 </div>
                 <div class="info-popup">
-                  Fostering a safe online environment is necessary as young children
-                  should be exposed to material that supports their learning,
-                  development and emotional well-being.
+                  It is important to curate educational and age-appropriate content for your child to support your child’s development and well-being. 
                 </div>
-                Curated age-appropriate content for my child.
+                Curated age-appropriate content for my child
               </div>
               <div class="back"></div>
             </div>
 
             <div class="bingo-cell">
-              <div class="front">Sticked to my screen time rules.</div>
+              <div class="front">Followed my screen time rules</div>
               <div class="back"></div>
             </div>
 
@@ -494,17 +488,15 @@ a:hover {
                   <img src="info-icon.png" alt="Info" />
                 </div>
                 <div class="info-popup">
-                  Teaching young children to navigate the online world is important
-                for them to develop good habits early, avoid harmful content and
-                know when to seek help from a trusted adult.
+                  Teaching young children early on to navigate the online world is important for them to develop healthy digital habits early, and know when and how to seek help from a trusted adult. 
                 </div>
-                Talked to my child about online safety.
+                Talked to my child about online safety
               </div>
               <div class="back"></div>
             </div>
 
             <div class="bingo-cell">
-              <div class="front">Asked my parents before using my device.</div>
+              <div class="front">Asked my parents before using my device</div>
               <div class="back"></div>
             </div>
 
@@ -517,7 +509,7 @@ a:hover {
                   Young children are more likely to develop healthy online habits such as keeping
                   devices away during mealtimes, when parents lead by example.
                 </div>
-                Set a family screen use agreement.
+                Set a family screen use agreement
               </div>
               <div class="back"></div>
             </div>
@@ -568,15 +560,14 @@ a:hover {
 
     // Lines to check: rows, columns, diagonals
     const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
+  [0, 1, 2], // Top row
+  [3, 4, 5], // Middle row
+  [6, 7, 8], // Bottom row
+  [0, 3, 6], // Left column
+  [1, 4, 7], // Middle column
+  [2, 5, 8], // Right column
+];
+
 
     let hasShownLinePopup = false; // flag so line popup shows only once
 
