@@ -51,7 +51,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: auto; /* fixed vertical spacing */
+      min-height: auto; 
       width: 100%;
       padding-top: 20px;
       padding-bottom: 20px;
@@ -59,7 +59,7 @@
     }
 
     #tablet-outer-frame {
-  width: 1200px; /* your "design size" */
+  width: 1200px; 
   background: #210E33;
   border-radius: 40px;
   padding: clamp(20px, 5vw, 55px);
@@ -412,7 +412,7 @@ a:hover {
   .scale-wrapper {
     transform: scale(calc(100vw / 1200));
     transform-origin: top center;
-    height: calc(1000px * (100vw / 1200)); /* adjust 1000px based on your tablet height */
+    height: calc(1000px * (100vw / 1200)); 
   }
 }
 
@@ -535,7 +535,7 @@ a:hover {
 
 <div class="popup popupLine" id="popupLine">
         <div class="popup-content popupLine-content">
-          <p id="popupLineMessage" style="color: #262626;">Congrats, you got a Bingo!</p>
+          <p id="popupLineMessage" style="color: #262626;">Well done! 🎉 You are doing a <br> fantastic job staying safe online. Keep it up!</p>
           <div id="popupLineButtons" class="popup-buttons"></div>
         </div>
       </div>
@@ -557,18 +557,18 @@ a:hover {
     const popupLineButtons = document.getElementById("popupLineButtons");
     const closePopupFull = document.getElementById("closePopupFull");
 
-    // Lines to check: rows, columns, diagonals
+
     const lines = [
-  [0, 1, 2], // Top row
-  [3, 4, 5], // Middle row
-  [6, 7, 8], // Bottom row
-  [0, 3, 6], // Left column
-  [1, 4, 7], // Middle column
-  [2, 5, 8], // Right column
+  [0, 1, 2], 
+  [3, 4, 5], 
+  [6, 7, 8], 
+  [0, 3, 6], 
+  [1, 4, 7], 
+  [2, 5, 8], 
 ];
 
 
-    let hasShownLinePopup = false; // flag so line popup shows only once
+    let hasShownLinePopup = false; 
 
     function checkLines() {
       const flippedIndices = Array.from(cells)
@@ -588,7 +588,7 @@ a:hover {
     }
 
     function openPopupLine() {
-      if (hasShownLinePopup) return; // only open once
+      if (hasShownLinePopup) return; 
       hasShownLinePopup = true;
 
       popupLine.style.display = "flex";
@@ -601,7 +601,7 @@ a:hover {
       });
 
       const resetBtn = document.createElement("button");
-      resetBtn.textContent = "Reset Game";
+      resetBtn.textContent = "Reset";
       resetBtn.addEventListener("click", () => {
         resetGame();
         popupLine.style.display = "none";
@@ -631,7 +631,6 @@ a:hover {
     }
 
     function updateResetButtonState() {
-      // Enable reset if any cell flipped, else disable
       const anyFlipped = Array.from(cells).some((c) =>
         c.classList.contains("flipped")
       );
@@ -656,7 +655,6 @@ a:hover {
     resetButton.addEventListener("click", resetGame);
     closePopupFull.addEventListener("click", closePopupFullFunc);
 
-    // Initially disable reset button
     resetButton.disabled = true;
   </script>
 </body>
